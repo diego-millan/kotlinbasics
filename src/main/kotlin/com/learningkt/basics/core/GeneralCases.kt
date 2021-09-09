@@ -2,6 +2,8 @@ package com.learningkt.basics.core
 
 import com.learningkt.basics.pairvalues.Color
 import java.lang.Exception
+import java.lang.IllegalArgumentException
+import java.lang.NumberFormatException
 
 class GeneralCases {
     fun getStringOrNull(arr : Array<String>) : String? {
@@ -56,4 +58,19 @@ class GeneralCases {
     fun isLetter(letter : Char) = letter in 'a'..'z'
 
     fun isNotLetter(letter: Char) = letter !in 'a'..'z'
+
+    fun parseNumber(number : String) : Int {
+        var result : Int = try {
+            Integer.parseInt(number)
+        } catch (e: NumberFormatException) {
+            return -1
+        }
+        return result
+    }
+
+    fun checkValidDate(s : String) : Boolean {
+        val regex = """\d{2}/\d{2}/\d{4}""".toRegex()
+        return regex.matches(s)
+    }
+
 }

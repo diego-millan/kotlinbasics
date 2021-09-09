@@ -38,4 +38,34 @@ class GeneralCasesTest {
     fun `when check not in expression for letter then return true when expected`() {
         Assertions.assertTrue(GeneralCases().isNotLetter('*'))
     }
+
+    fun isValidIdentifier(s: String): Boolean {
+        var result : Boolean = true
+        if (s.startsWith('_')) {
+            return true
+        }
+        for (index in s.indices) {
+            var actual : Char = s[index]
+            if (actual !in 'a'..'z') {
+                return false
+            }
+        }
+        return s.isNotBlank()
+    }
+
+    @Test
+    fun `when check if string is only alpha or starts with underscore then returns as expected`() {
+        Assertions.assertTrue(isValidIdentifier("name"))   // true
+        Assertions.assertTrue(isValidIdentifier("_name"))  // true
+        Assertions.assertTrue(isValidIdentifier("_12"))    // true
+        Assertions.assertFalse(isValidIdentifier(""))       // false
+        Assertions.assertFalse(isValidIdentifier("012"))    // false
+        Assertions.assertFalse(isValidIdentifier("no$"))    // false
+    }
+
+    @Test
+    fun `when check regex for valid date then return true when expected`() {
+        Assertions.assertTrue(GeneralCases().checkValidDate("12/12/2012"))
+        Assertions.assertFalse(GeneralCases().checkValidDate("1/12/2012"))
+    }
 }
