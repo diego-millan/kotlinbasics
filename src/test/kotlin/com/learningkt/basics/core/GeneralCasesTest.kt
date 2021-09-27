@@ -68,4 +68,30 @@ class GeneralCasesTest {
         Assertions.assertTrue(GeneralCases().checkValidDate("12/12/2012"))
         Assertions.assertFalse(GeneralCases().checkValidDate("1/12/2012"))
     }
+
+    @Test
+    fun `create sublist and check let usage`() {
+
+        val numbers : MutableList<String> = mutableListOf("one", "two", "three", "four", "five")
+        GeneralCases().createSublistAndPrint(numbers)
+    }
+
+    @Test
+    fun `when check method apply then it should work like builder`() {
+        val dog : Dog = Dog().apply {
+            name = "barto"
+            sex = "male"
+        }
+
+        Assertions.assertEquals("barto", dog.name)
+    }
+
+    @Test
+    fun `check run usage then it should execute object subtasks`() {
+        val isSquare = Rectangle(15,15).run {
+            isSquare
+        }
+        Assertions.assertTrue(isSquare)
+    }
+
 }

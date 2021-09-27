@@ -2,8 +2,8 @@ package com.learningkt.basics.core
 
 import com.learningkt.basics.pairvalues.Color
 import java.lang.Exception
-import java.lang.IllegalArgumentException
 import java.lang.NumberFormatException
+import kotlin.random.Random
 
 class GeneralCases {
     fun getStringOrNull(arr : Array<String>) : String? {
@@ -21,7 +21,7 @@ class GeneralCases {
     }
 
     fun talk(pet: Pet) : String {
-        var result : String = when (pet) {
+        val result : String = when (pet) {
             is Dog -> Dog().woof()
             is Cat -> Cat().meow()
             else -> ""
@@ -71,6 +71,33 @@ class GeneralCases {
     fun checkValidDate(s : String) : Boolean {
         val regex = """\d{2}/\d{2}/\d{4}""".toRegex()
         return regex.matches(s)
+    }
+
+    fun checkNullable(s : String?) : String {
+        return s ?: ""
+    }
+
+    fun createSublistAndPrint(list : MutableList<String>) {
+        list.map { it.length }.filter { it > 3 }.let {
+            println(it)
+        }
+    }
+
+    fun getRandomInt(): Int {
+        return Random.nextInt(100).also {
+            println("getRandomInt() generated value $it")
+        }
+    }
+
+    fun getFirstAndLastIndex(list : MutableList<Int>) : Pair<Int, Int>  {
+        var response : Pair<Int, Int>
+        with(list) {
+            val first = first()
+            val last = last()
+            response = Pair(first,last)
+        }
+
+        return response
     }
 
 }
