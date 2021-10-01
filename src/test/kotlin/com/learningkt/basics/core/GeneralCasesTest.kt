@@ -3,6 +3,7 @@ package com.learningkt.basics.core
 import com.learningkt.basics.pairvalues.Color
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import java.lang.StringBuilder
 
 class GeneralCasesTest {
     @Test
@@ -92,6 +93,13 @@ class GeneralCasesTest {
             isSquare
         }
         Assertions.assertTrue(isSquare)
+    }
+
+    @Test
+    fun `check generic method with super type matches`() {
+        val str : StringBuilder = StringBuilder("String without dot in the end")
+        GeneralCases().ensureTrailingPeriod(str)
+        Assertions.assertTrue(str.endsWith('.'))
     }
 
 }

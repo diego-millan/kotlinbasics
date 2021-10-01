@@ -1,6 +1,7 @@
 package com.learningkt.basics.core
 
 import com.learningkt.basics.pairvalues.Color
+import java.lang.Appendable
 import java.lang.Exception
 import java.lang.NumberFormatException
 import kotlin.random.Random
@@ -99,5 +100,13 @@ class GeneralCases {
 
         return response
     }
+
+    fun <T> ensureTrailingPeriod(seq : T) where T : CharSequence, T : Appendable {
+        if (!seq.endsWith('.')) {
+            seq.append('.')
+        }
+    }
+
+    fun equals2(v1: Pet?, v2: Pet?): Boolean = v1 === v2 || v1?.equals(v2) ?: (false)
 
 }
