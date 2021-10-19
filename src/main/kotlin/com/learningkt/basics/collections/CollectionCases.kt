@@ -47,11 +47,13 @@ class CollectionCases {
     }
 
     fun groupByAge() : Pair<Int, List<Hero>> {
-        val mapByAge: Map<Int, List<Hero>> =
-            heroes.groupBy { it.age }
-        val (age, group) = mapByAge.maxByOrNull { (_, group) ->
+        val mapByAge: Map<Int, List<Hero>> = heroes.groupBy { it.age }
+
+        val selector: (Map.Entry<Int, List<Hero>>) -> Int = { (_, group) ->
             group.size
-        }!!
+        }
+
+        val (age, group) = mapByAge.maxByOrNull(selector)!!
 
         return Pair(age, group)
     }
